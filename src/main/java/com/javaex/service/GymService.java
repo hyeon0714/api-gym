@@ -16,6 +16,7 @@ public class GymService {
 	public void exeCheck(String id) {
 		
 		gd.Check(id);
+		
 	}
 	
 	//회원가입용
