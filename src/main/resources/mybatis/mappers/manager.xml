@@ -77,7 +77,8 @@
 	<select id="memberS" parameterType="int" resultType="com.javaex.vo.MemberVo">
 		<![CDATA[ ]]>
 		<![CDATA[ 
-			select	name,
+			select	no,
+					name,
 					id,
 			        hp,
 			        address,
@@ -91,11 +92,12 @@
 	
 	<select id="generalS" parameterType="int" resultType="com.javaex.vo.GeneralVo">
 		<![CDATA[ 
-			select	reg_date regDate,
+			select	no,
+					reg_date regDate,
 					deadline,
 			        price
 			from general
-			where no = 4
+			where no = #{no}
 			order by deadline desc limit 1;
 		 ]]>
 	</select>
@@ -115,8 +117,8 @@
 			select	entry_time entryTime,
 					leave_time leaveTime
 			from attend
-			where no = 1
-			order by leave_time desc;
+			where no = #{no}
+			order by leave_time desc
 		 ]]>
 	</select>
 	
@@ -125,7 +127,7 @@
 				l_date lDate
 		from lesson, pt
 		where pt.pt_no = lesson.pt_no
-		and no = 1;
+		and no = #{no}
 	</select>
 	
 	<select id="generalSS" parameterType="int" resultType="com.javaex.vo.GeneralVo">
@@ -134,7 +136,7 @@
 					deadline,
 			        price
 			from general
-			where no = 4
+			where no = #{no}
 			order by deadline desc;
 		
 		 ]]>

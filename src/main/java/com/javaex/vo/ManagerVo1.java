@@ -16,7 +16,7 @@ public class ManagerVo1 {
 	public ManagerVo1() {
 		super();
 	}
-
+	
 	public ManagerVo1(int no, String name, String hp, int period, String approval, String deadline, int lockerNo,
 			String tName, int ptTotal, int ptCount) {
 		super();
