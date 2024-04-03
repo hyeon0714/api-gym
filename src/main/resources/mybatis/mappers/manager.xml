@@ -28,6 +28,52 @@
 		]]>
 	</select>
 	
+	<select id="membermainlist2" parameterType="Map" resultType="com.javaex.vo.ManagerVo1">
+		<![CDATA[
+			select	m.no,
+					m.name,
+					m.hp,
+			        m.period,
+			        m.approval,
+			        g.deadline,
+			        m.locker_no,
+			        g.pt_total ptTotal,
+			        g.pt_count ptCount,
+			        g.tname
+			from member m left outer join
+			(select	member.no,
+					member.name,
+					member.hp,
+			        period,
+			        approval,
+			        deadline,
+			        locker_no,
+			        trainer.name tname,
+			        pt_total,
+			        pt_count	
+			from member, general, pt, trainer
+			where member.no = general.no
+			and member.no = pt.no
+			and (member.no, deadline) in	(select	no,
+											max(deadline)
+											from general
+											group by no)
+			and pt.trainer_no = trainer.trainer_no
+			and member.name like concat('%', #{keyword},'%')) g
+			on m.no = g.no
+			order by deadline desc
+			limit #{startRowNo},#{listCnt}
+		]]>
+	</select>
+	
+	<select id="total" parameterType="String" resultType="int">
+		<![CDATA[ 
+			select	count(*)
+			from member
+			where member.name like concat('%', #{keyword},'%')
+		]]>
+	</select>
+	
 	<select id="memberS" parameterType="int" resultType="com.javaex.vo.MemberVo">
 		<![CDATA[ ]]>
 		<![CDATA[ 

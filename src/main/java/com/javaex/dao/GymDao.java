@@ -1,6 +1,7 @@
 package com.javaex.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,21 @@ public class GymDao {
 		System.out.println(memberList);
 		
 		return memberList;
+	}
+	//10개까지
+	public List<ManagerVo1> list2(Map<String, Object> limitMap) {
+		System.out.println(limitMap);
+		List<ManagerVo1> memberList2 = sqlSession.selectList("manager.membermainlist2", limitMap);
+		System.out.println(memberList2);
+		
+		return memberList2;
+	}
+	
+	//페이지계산
+	public int totalCount(String keyword) {
+		
+		return sqlSession.selectOne("manager.total", keyword);
+		
 	}
 	
 	//서버의 멤버값
